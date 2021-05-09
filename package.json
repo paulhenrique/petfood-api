@@ -1,0 +1,27 @@
+{
+  "name": "refactored-garbanzo",
+  "version": "1.0.0",
+  "description": "REST API baseada em MongoDB e no split de pagamentos do Pagar.me",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulhenrique/refactored-garbanzo.git"
+  },
+  "author": "paulhenrique",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paulhenrique/refactored-garbanzo/issues"
+  },
+  "homepage": "https://github.com/paulhenrique/refactored-garbanzo#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^9.0.1",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.6",
+    "mongoose": "^5.12.7",
+    "morgan": "^1.10.0"
+  }
+}
