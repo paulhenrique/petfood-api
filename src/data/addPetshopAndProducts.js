@@ -1,16 +1,15 @@
-const Petshop = require('../models/petshop');
-const Product = require('../models/product');
-const petshops = require('./petfood.json');
-const createRecipients = require('../services/pagarme').createRecipient;
+const Petshop = require("../models/petshop");
+const Product = require("../models/product");
+const petshops = require("./petfood.json");
+const createRecipients = require("../services/pagarme").createRecipient;
 
 // database
-require('../database');
+require("../database");
 
 const addPetshopsAndProducts = async () => {
   try {
     for (let petshop of petshops) {
       const recipient = await createRecipients(petshop.nome);
-
       if (!recipient.error) {
         const newPetshop = await new Petshop({
           ...petshop,
@@ -24,7 +23,7 @@ const addPetshopsAndProducts = async () => {
       }
     }
 
-    console.log('Final do Script');
+    console.log("Final do Script");
   } catch (err) {
     console.log(err.message);
   }

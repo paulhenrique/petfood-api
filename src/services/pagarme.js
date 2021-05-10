@@ -1,6 +1,5 @@
 const axios = require("axios");
 const dotenv = require("dotenv").config();
-
 const api = axios.create({
   baseURL: "https://api.pagar.me/1",
 });
@@ -8,12 +7,10 @@ const api = axios.create({
 const api_key = process.env.PAGAR_ME_KEY;
 
 module.exports = {
-  createRecipients: async (name) => {
+  createRecipient: async (name) => {
     try {
       const response = await api.post("/recipients", {
-        api_key,
-        anticipatable_volume_percentage: "85",
-        automatic_anticipation_enabled: "true",
+        api_key: api_key,
         bank_account: {
           bank_code: "341",
           agencia: "0932",
@@ -21,37 +18,47 @@ module.exports = {
           conta: "58054",
           type: "conta_corrente",
           conta_dv: "1",
-          document_number: "26268738888",
+          document_number: "72163010000159",
           legal_name: name,
         },
         register_information: {
-          type: 'corporation',
-          document_number: '72163010000159',
+          type: "corporation",
+          document_number: "72163010000159",
           company_name: name,
-          email: 'pedgree@email.com',
-          site_url: 'http://www.site.com',
+          email: "pedgree@email.com",
+          site_url: "http://www.site.com",
           phone_numbers: [
             {
-              ddd: '11',
-              number: '85876199',
-              type: 'mobile',
+              ddd: "11",
+              number: "85876199",
+              type: "mobile",
             },
           ],
           managing_partners: [
             {
-              type: 'individual',
-              document_number: '925452787',
-              email: 'some@email.com',
-              name: 'Someone',
+              type: "individual",
+              document_number: "925452787",
+              email: "some@email.com",
+              name: "Someone",
             },
           ],
-        transfer_day: "5",
-        transfer_enabled: "true",
-        transfer_interval: "weekly",
-        postback_url: "https://requestb.in/tl0092tl",
+        },
       });
 
-      return {error:false, data:response.data};
+      return { error: false, data: response.data };
+    } catch (err) {
+      console.log("here");
+      return { error: true, message: err.message };
+    }
+  },
+  createSplitTransaction: async (data) => {
+    try {
+      const response = await api.post("/transactions", {
+        api_key,
+        ...data,
+      });
+
+      return { error: false, data: response.data };
     } catch (err) {
       return { error: true, message: err.message };
     }
