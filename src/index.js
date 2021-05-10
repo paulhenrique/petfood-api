@@ -10,7 +10,7 @@ const database = require("./database");
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
-
+app.use("/", require("./routes/main.routes"));
 app.listen(process.env.PORT, () => {
   console.log("Server is up in", process.env.PORT);
 });
