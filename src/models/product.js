@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Squema;
+const Schema = mongoose.Schema;
 
 const product = new Schema({
   nome: String,
@@ -12,4 +12,4 @@ const product = new Schema({
   avaliacoes: Number,
 });
 
-module.exports = mongoose.model("product", petshop);
+module.exports = mongoose.model("product", product);
